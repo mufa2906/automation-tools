@@ -10,7 +10,7 @@ tar -czf "$TARFILE" -C "$SRC" .
 
 echo "Backup selesai: $TARFILE"
 
-cd ~/projects
+cd ~/automation-tools
 git add .
 git commit -m "Auto backup $(date +'%Y-%m-%d %H:%M:%S')"
 git push origin main
