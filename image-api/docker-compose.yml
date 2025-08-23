@@ -1,19 +1,18 @@
-# docker-compose.yml (minimal)
 version: "3.9"
 services:
-  image-api:
+  file-api:
     build: .
-    container_name: image-api
     ports:
       - "8000:8000"
-    restart: unless-stopped
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-    volumes:
-      - .:/app                # hot reload kode
-      - uploads_data:/app/uploads   # 👈 storage persisten (lihat step 4)
     environment:
       - TZ=Asia/Jakarta
-
+    volumes:
+      - .:/app                    # sync code for dev (remove in prod)
+      - uploads_data:/app/uploads
+      - logs_data:/app/logs
+      - db_data:/app/data
+    restart: always
 volumes:
   uploads_data:
-
+  logs_data:
+  db_data:
